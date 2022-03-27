@@ -3,7 +3,9 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 
 const app = express();
-mongoose.connect('mongodb://localhost/mevn=database').then(db => console.log('Db is connected')).catch(err => console.error(err));
+mongoose.connect('mongodb://localhost:27017/mevn-database')
+    .then(db => console.log('Db is connected'))
+    .catch(err => console.error(err));
 
 // Settings
 app.set('port', process.env.PORT || 3000);
@@ -16,7 +18,6 @@ app.use(express.json());
 app.use('/tasks', require('./routes/tasks'));
 
 // Static files
-
 app.use(express.static(__dirname + '/public'));
 
 //Send success messagge when runnig the server
